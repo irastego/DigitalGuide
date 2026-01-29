@@ -1,5 +1,6 @@
 package com.example.digital_guide.controller;
 
+import com.example.digital_guide.entity.Instruction;
 import com.example.digital_guide.entity.Property;
 import com.example.digital_guide.service.PropertyService;
 import lombok.RequiredArgsConstructor;
@@ -32,5 +33,10 @@ public class PropertyController {
     public ResponseEntity<Property> getBySlug(@PathVariable String slug) {
         Property property = propertyService.getPropertyBySlug(slug);
         return ResponseEntity.ok(property);
+    }
+
+    @PostMapping("/{id}/instructions")
+    public ResponseEntity<Instruction> addInstruction(@PathVariable Long id, @RequestBody Instruction instruction){
+        return ResponseEntity.ok(propertyService.addInstructionToProperty(id, instruction));
     }
 }
